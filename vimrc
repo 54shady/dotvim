@@ -50,6 +50,7 @@ highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
 "一边输入搜索关键字,一边显示搜索结果
 set incsearch
+set hlsearch
 
 "不用vi的键盘,用vim的键盘
 set nocompatible
@@ -195,3 +196,9 @@ let g:fuf_com_list=[':exe "FufBuffer                       " |" sj     ',
 nnoremap <silent> <S-F4> :call fuf#givencmd#launch('', 0, 'Cmd>', GetAllCommands())<CR>
 nnoremap <silent> <F4> :call fuf#givencmd#launch('', 0, 'Cmd>', g:fuf_com_list)<CR>
 "}}}
+"ShowMarks
+"By default the following keymappings are defined:
+"   <leader>mt : Toggles ShowMarks on and off.
+"   <leader>mh : Hides an individual mark.
+"   <leader>ma : Hides all marks in the current buffer.
+"   <leader>mm : Places the next available mark. 
