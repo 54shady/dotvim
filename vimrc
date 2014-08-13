@@ -2,6 +2,7 @@
 set sw=4
 set ts=4
 
+"set mouse=a
 syntax on
 "vimManagerWindow
 let g:winManagerWindowLayout='FileExplorer|TagList'
@@ -12,6 +13,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <C-x> <C-w>x
 
 "cscope
 ""<C-_> Ctrl和下划线组合
@@ -43,10 +45,15 @@ nnoremap <C-l> <C-w>l
 
 "状态栏的显示
 set laststatus=2 
-set statusline=%t%m%r%h%w\ \ [Li=%l/%L][Co=%v][%p%%]\ Time:\%{strftime(\"%d-%m-%y\ \ %H:%M\")} 
+"set statusline=%t%m%r%h%w\ \ [LINE=%l/%L][CO=%v][%p%%]\ Time:\%{strftime(\"%d-%m-%y\ \ %H:%M\")}
+set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ %w\ \ %{GetPWD()}%h\ [BUF=%n]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
 "set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")} 
 highlight StatusLine guifg=White guibg=Black 
 highlight StatusLineNC guifg=Black guibg=White ctermfg=red 
+
+func! GetPWD()
+return substitute(getcwd(), "", "", "g")
+endf
 
 "一边输入搜索关键字,一边显示搜索结果
 set incsearch
@@ -79,6 +86,9 @@ map <silent> <leader>ee :e ~/.vimrc<cr>
 
 "when .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
+"tags
+nmap <leader>tn :tnext<CR>
+nmap <leader>tp :tprevious<CR>
 
 "quickfix settings
 nmap <leader>cw :cw 10<cr>
