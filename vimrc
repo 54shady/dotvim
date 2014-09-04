@@ -46,7 +46,8 @@ nnoremap <C-x> <C-w>x
 "状态栏的显示
 set laststatus=2 
 "set statusline=%t%m%r%h%w\ \ [LINE=%l/%L][CO=%v][%p%%]\ Time:\%{strftime(\"%d-%m-%y\ \ %H:%M\")}
-set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ %w\ \ %{GetPWD()}%h\ [BUF=%n]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
+set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
+"set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ %w\ \ %{GetPWD()}%h\ [BUF=%n]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
 "set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")} 
 highlight StatusLine guifg=White guibg=Black 
 highlight StatusLineNC guifg=Black guibg=White ctermfg=red 
@@ -89,16 +90,27 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 "tags
 nmap <leader>tn :tnext<CR>
 nmap <leader>tp :tprevious<CR>
+nmap <leader>ts :tselect<CR>
 
 "quickfix settings
+nmap <leader>co :copen<CR>
+nmap <leader>cl :cclose<CR>
 nmap <leader>cw :cw 10<cr>
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
+
+"marks
+nmap <leader>ks :marks<cr>
+
+"vimgrep
+"noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
+"noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 
 "find the word under the cursor in the current file.
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
 "buffer
+nmap <leader>ls :ls<CR>
 nmap <leader>bd :bd<CR>
 nmap <leader>bn :bn<CR>
 nmap <leader>bp :bp<CR>
@@ -212,3 +224,14 @@ nnoremap <silent> <F4> :call fuf#givencmd#launch('', 0, 'Cmd>', g:fuf_com_list)<
 "   <leader>mh : Hides an individual mark.
 "   <leader>ma : Hides all marks in the current buffer.
 "   <leader>mm : Places the next available mark. 
+
+"select a text & search
+vnoremap * y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+vnoremap # y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+
+"vimgrep current word
+map ft :call Search_Word()<CR>:copen<CR>
+function! Search_Word()
+let w = expand("<cword>") " 在当前光标位置抓词
+execute "vimgrep " w " *"
+endfunction
