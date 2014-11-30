@@ -196,3 +196,9 @@ function! Search_Word()
 let w = expand("<cword>") "在当前光标位置抓词
 execute "vimgrep " w " *"
 endfunction
+
+map g<C-p> :call Grep_word()
+function! Grep_word()
+let w = expand("<cword>")
+execute ":!mygrep --color=auto " w " /path/* -nR "
+endfunction
