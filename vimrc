@@ -211,3 +211,9 @@ let w = expand("<cword>")
 execute ":sp"
 execute ":tag " w " "
 endfunction
+
+"gdb mappings
+nmap sg :source /root/.vim/macros/gdb_mappings.vim<CR>
+"use arm-linux-gdb for remote debug instead of gdb
+set gdbprg=/opt/FriendlyARM/mini2440/4_3_2/usr/local/arm/4.3.2/bin/arm-linux-gdb
+
