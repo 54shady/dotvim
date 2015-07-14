@@ -232,3 +232,10 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+"ctrl p config
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_by_filename = 1
+
+"no uganda
+"set shortmess=I
