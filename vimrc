@@ -45,6 +45,12 @@ func! GetPWD()
 return substitute(getcwd(), "", "", "g")
 endf
 
+"save
+map <silent> <leader>w :w!<cr>
+
+"quit
+map <silent> <leader>q :qa!<cr>
+
 "fast reloading of the .vimrc
 map <silent> <leader>ss :source ~/.vimrc<cr>
 
