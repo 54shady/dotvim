@@ -245,3 +245,5 @@ let g:ctrlp_by_filename = 1
 
 "no uganda
 "set shortmess=I
+
+nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
