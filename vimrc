@@ -6,7 +6,7 @@ set nocompatible
 set nowrapscan
 set fenc=utf-8 
 set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936 
-set autochdir
+"set autochdir
 let mapleader = ","
 
 "set mouse=a
@@ -74,6 +74,17 @@ nmap <leader>cp :cp<cr>
 
 "marks
 nmap <leader>ks :marks<cr>
+
+"set path, set the code path you want to built, should disable the autochdir config
+"for example below
+"set path=/opt/FriendlyARM/mini2440/linux-3.17.4
+
+"set makeprg, this is the realy call, depend on the path
+"the genk can be a shell script or something else, which do the real work
+"set mp=genk
+
+"make program, which use the mp option instead
+nmap <F5> :make<cr><cr><cr>
 
 "vimgrep
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
