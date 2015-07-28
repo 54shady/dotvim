@@ -258,3 +258,8 @@ let g:ctrlp_by_filename = 1
 "set shortmess=I
 
 nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
+
+"map for a.vim plugin
+nmap <leader>a :A<cr>
+nmap <leader>as :AS<cr>
+nmap <leader>av :AV<cr>
