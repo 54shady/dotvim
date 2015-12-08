@@ -1,5 +1,6 @@
 set sw=4
 set ts=4
+"set et
 set incsearch
 set hlsearch
 set nocompatible
@@ -8,6 +9,7 @@ set fenc=utf-8
 set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936 
 "set autochdir
 let mapleader = ","
+set listchars=tab:▸\ ,trail:-,eol:¬
 
 "set mouse=a
 syntax on
@@ -98,6 +100,8 @@ nmap <leader>ls :ls<CR>
 nmap <leader>bd :bd<CR>
 nmap <leader>bn :bn<CR>
 nmap <leader>bp :bp<CR>
+nmap <leader>bb :b#<CR>
+nmap <leader>hd :hide<CR>
 
 "FuzzyFinder
 let g:fuf_modesDisable = [ 'mrufile', 'mrucmd', ]
