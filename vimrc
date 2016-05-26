@@ -261,6 +261,12 @@ let g:ctrlp_by_filename = 1
 "no uganda
 "set shortmess=I
 
+"vim提供的用于将.txt的文档生成含有tag的文档以便查找
+".txt里被星号包裹的就是tag
+"或者是去vim的源码目录下runtime/doc/里执行
+"make doctags生成doctags工具
+"再make tags就能将该目录下所有.txt制作生成tags
+"或者执行doctags *.txt | sort > tags来生成tags文件
 nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
 
 "map for a.vim plugin
