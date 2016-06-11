@@ -187,3 +187,26 @@ nmap <silent> <leader>lk :LUTags<cr>
 nmap <silent> <leader>lb :LUBufs<cr>
 "映射LUWalk为,lw
 nmap <silent> <leader>lW :LUWalk<cr>
+
+"cscope config
+if has("cscope")
+	set csprg=/usr/bin/cscope
+	set csto=1
+	set cst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+		cs add cscope.out
+	endif
+	set csverb
+endif
+
+"<leader>cc + <s|g|c|t|e|f|i|d>
+nmap <leader>ccs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ccg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ccc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cct :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cce :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ccf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>cci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>ccd :cs find d <C-R>=expand("<cword>")<CR><CR>
