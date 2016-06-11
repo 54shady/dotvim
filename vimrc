@@ -86,7 +86,7 @@ nmap <leader>ks :marks<cr>
 "set mp=genk
 
 "make program, which use the mp option instead
-nmap <F5> :make<cr><cr><cr>
+"nmap <F5> :make<cr><cr><cr>
 
 "vimgrep
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
@@ -102,110 +102,6 @@ nmap <leader>bn :bn<CR>
 nmap <leader>bp :bp<CR>
 nmap <leader>bb :b#<CR>
 nmap <leader>hd :hide<CR>
-
-"FuzzyFinder
-let g:fuf_modesDisable = [ 'mrufile', 'mrucmd', ]
-let g:fuf_modesDisable = []
-let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem = 400
-nnoremap <silent> sj     :FufBuffer<CR>
-nnoremap <silent> sk     :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> sK     :FufFileWithFullCwd<CR>
-nnoremap <silent> s<C-k> :FufFile<CR>
-nnoremap <silent> sl     :FufCoverageFileChange<CR>
-nnoremap <silent> sL     :FufCoverageFileChange<CR>
-nnoremap <silent> s<C-l> :FufCoverageFileRegister<CR>
-nnoremap <silent> sd     :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> sD     :FufDirWithFullCwd<CR>
-nnoremap <silent> s<C-d> :FufDir<CR>
-nnoremap <silent> sn     :FufMruFile<CR>
-nnoremap <silent> sN     :FufMruFileInCwd<CR>
-nnoremap <silent> sm     :FufMruCmd<CR>
-nnoremap <silent> su     :FufBookmarkFile<CR>
-nnoremap <silent> s<C-u> :FufBookmarkFileAdd<CR>
-vnoremap <silent> s<C-u> :FufBookmarkFileAddAsSelectedText<CR>
-nnoremap <silent> si     :FufBookmarkDir<CR>
-nnoremap <silent> s<C-i> :FufBookmarkDirAdd<CR>
-nnoremap <silent> st     :FufTag<CR>
-nnoremap <silent> sT     :FufTag!<CR>
-nnoremap <silent> s<C-]> :FufTagWithCursorWord!<CR>
-nnoremap <silent> s,     :FufBufferTag<CR>
-nnoremap <silent> s<     :FufBufferTag!<CR>
-vnoremap <silent> s,     :FufBufferTagWithSelectedText!<CR>
-vnoremap <silent> s<     :FufBufferTagWithSelectedText<CR>
-nnoremap <silent> s}     :FufBufferTagWithCursorWord!<CR>
-nnoremap <silent> s.     :FufBufferTagAll<CR>
-nnoremap <silent> s>     :FufBufferTagAll!<CR>
-vnoremap <silent> s.     :FufBufferTagAllWithSelectedText!<CR>
-vnoremap <silent> s>     :FufBufferTagAllWithSelectedText<CR>
-nnoremap <silent> s]     :FufBufferTagAllWithCursorWord!<CR>
-nnoremap <silent> sg     :FufTaggedFile<CR>
-nnoremap <silent> sG     :FufTaggedFile!<CR>
-nnoremap <silent> so     :FufJumpList<CR>
-nnoremap <silent> sp     :FufChangeList<CR>
-nnoremap <silent> sq     :FufQuickfix<CR>
-nnoremap <silent> sy     :FufLine<CR>
-nnoremap <silent> sh     :FufHelp<CR>
-nnoremap <silent> se     :FufEditDataFile<CR>
-nnoremap <silent> sr     :FufRenewCache<CR>
-"
-" F4和shift+F4调用FuzzyFinder命令行菜单""{{{
-"
-function! GetAllCommands()
-  redir => commands
-  silent command
-  redir END
-  return map((split(commands, "\n")[3:]),
-      \      '":" . matchstr(v:val, ''^....\zs\S*'')')
-endfunction
-
-" 自定义命令行
-let g:fuf_com_list=[':exe "FufBuffer                       " |" sj     ',
-                   \':exe "FufFileWithCurrentBufferDir     " |" sk     ',
-                   \':exe "FufFileWithFullCwd              " |" sK     ',
-                   \':exe "FufFile                         " |" s<C-k> ',
-                   \':exe "FufCoverageFileChange           " |" sl     ',
-                   \':exe "FufCoverageFileChange           " |" sL     ',
-                   \':exe "FufCoverageFileRegister         " |" s<C-l> ',
-                   \':exe "FufDirWithCurrentBufferDir      " |" sd     ',
-                   \':exe "FufDirWithFullCwd               " |" sD     ',
-                   \':exe "FufDir                          " |" s<C-d> ',
-                   \':exe "FufMruFile                      " |" sn     ',
-                   \':exe "FufMruFileInCwd                 " |" sN     ',
-                   \':exe "FufMruCmd                       " |" sm     ',
-                   \':exe "FufBookmarkFile                 " |" su     ',
-                   \':exe "FufBookmarkFileAdd              " |" s<C-u> ',
-                   \':exe "FufBookmarkFileAddAsSelectedText" |" s<C-u> ',
-                   \':exe "FufBookmarkDir                  " |" si     ',
-                   \':exe "FufBookmarkDirAdd               " |" s<C-i> ',
-                   \':exe "FufTag                          " |" st     ',
-                   \':exe "FufTag!                         " |" sT     ',
-                   \':exe "FufTagWithCursorWord!           " |" s<C-]> ',
-                   \':exe "FufBufferTag                    " |" s,     ',
-                   \':exe "FufBufferTag!                   " |" s<     ',
-                   \':exe "FufBufferTagWithSelectedText!   " |" s,     ',
-                   \':exe "FufBufferTagWithSelectedText    " |" s<     ',
-                   \':exe "FufBufferTagWithCursorWord!     " |" s}     ',
-                   \':exe "FufBufferTagAll                 " |" s.     ',
-                   \':exe "FufBufferTagAll!                " |" s>     ',
-                   \':exe "FufBufferTagAllWithSelectedText!" |" s.     ',
-                   \':exe "FufBufferTagAllWithSelectedText " |" s>     ',
-                   \':exe "FufBufferTagAllWithCursorWord!  " |" s]     ',
-                   \':exe "FufTaggedFile                   " |" sg     ',
-                   \':exe "FufTaggedFile!                  " |" sG     ',
-                   \':exe "FufJumpList                     " |" so     ',
-                   \':exe "FufChangeList                   " |" sp     ',
-                   \':exe "FufQuickfix                     " |" sq     ',
-                   \':exe "FufLine                         " |" sy     ',
-                   \':exe "FufHelp                         " |" sh     ',
-                   \':exe "FufEditDataFile                 " |" se     ',
-                   \':exe "FufRenewCache                   " |" sr     ',
-                   \':exe "FufDir ~/"                        |" ChangeHomeDir',
-                   \':exe "FufFile ~/"                       |" OpenHomeDir',
-                   \]
-nnoremap <silent> <S-F4> :call fuf#givencmd#launch('', 0, 'Cmd>', GetAllCommands())<CR>
-nnoremap <silent> <F4> :call fuf#givencmd#launch('', 0, 'Cmd>', g:fuf_com_list)<CR>
-"}}}
 
 "select a text & search
 vnoremap * y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -234,9 +130,9 @@ execute ":tag " w " "
 endfunction
 
 "gdb mappings
-nmap sg :source /root/.vim/macros/gdb_mappings.vim<CR>
+"nmap sg :source /root/.vim/macros/gdb_mappings.vim<CR>
 "use arm-linux-gdb for remote debug instead of gdb
-set gdbprg=/opt/FriendlyARM/mini2440/4_3_2/usr/local/arm/4.3.2/bin/arm-linux-gdb
+"set gdbprg=/opt/FriendlyARM/mini2440/4_3_2/usr/local/arm/4.3.2/bin/arm-linux-gdb
 
 "config for undo plugin
 set undodir=~/.vim/tmp/.undodir
@@ -254,10 +150,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-"ctrl p config
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_by_filename = 1
-
 "no uganda
 "set shortmess=I
 
@@ -273,3 +165,25 @@ nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
 nmap <leader>a :A<cr>
 nmap <leader>as :AS<cr>
 nmap <leader>av :AV<cr>
+
+"map for list and unlist
+nmap <leader>lt :set list<cr>
+nmap <leader>nlt :set nolist<cr>
+
+"lookupfile setting
+let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
+let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+
+if filereadable("./filenametags")                "设置tag文件的名字
+	let g:LookupFile_TagExpr = '"./filenametags"'
+endif
+
+"映射LookupFile为,lk
+nmap <silent> <leader>lk :LUTags<cr>
+"映射LUBufs为,ll
+nmap <silent> <leader>lb :LUBufs<cr>
+"映射LUWalk为,lw
+nmap <silent> <leader>lW :LUWalk<cr>
