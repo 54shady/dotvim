@@ -91,6 +91,8 @@ nmap <leader>ks :marks<cr>
 "vimgrep
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 "noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
+"search keyword in the open buffers
+noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/ ##<CR>
 
 "find the word under the cursor in the current file.
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
