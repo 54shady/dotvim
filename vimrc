@@ -212,3 +212,11 @@ nmap <leader>cce :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>ccf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>cci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>ccd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+"search in all buffers
+":vim /pattern/ ##    ## reference the arglist
+
+" @: will repeat the last command in history
+" how to use that ?
+" :!gcc % && ./a.out
+" so when u type @: and it will execute the command again
