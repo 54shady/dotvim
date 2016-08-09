@@ -11,6 +11,9 @@ set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 let mapleader = ","
 set listchars=tab:▸\ ,trail:-,eol:¬
 
+"use the color in the runtime color path
+colorscheme peachpuff
+
 "set mouse=a
 syntax on
 
