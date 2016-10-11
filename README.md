@@ -4,13 +4,13 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
-# exchange.vim
+## exchange.vim
 
 [https://github.com/tommcdo/vim-exchange](https://github.com/tommcdo/vim-exchange)
 
 Easy text exchange operator for Vim.
 
-## Mappings
+### Mappings
 
 `cx`
 
@@ -28,3 +28,15 @@ Like `cx`, but for Visual mode.
 `cxc`
 
 Clear any {motion} pending for exchange.
+
+## Using Vim's paste mode with the system paste command
+
+```shell
+:set paste
+```
+
+Press Shift + Insert to copy text from system clipboard
+
+```shell
+:set nopaste
+```
