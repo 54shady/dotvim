@@ -1,10 +1,12 @@
 # Usage
 
-- git clone https://github.com/54shady/dotvim.git .vim
+- git clone https://github.com/54shady/dotvim.git.vim
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
 ## Tabular.vim
+
+[插件地址https://github.com/godlygeek/tabular.git](https://github.com/godlygeek/tabular.git)
 
 ### 赋值对齐
 
@@ -76,16 +78,15 @@ var video = {
 
 ## exchange.vim
 
-[https://github.com/tommcdo/vim-exchange](https://github.com/tommcdo/vim-exchange)
+[插件地址https://github.com/tommcdo/vim-exchange](https://github.com/tommcdo/vim-exchange)
 
-Easy text exchange operator for Vim.
+快速交换文本位置
 
 ### Mappings
 
 `cx`
 
-On the first use, define the first {motion} to exchange. On the second use,
-define the second {motion} and perform the exchange.
+第一次执行cx会标记你要交换的第一个文本,再次执行cx后会交换两文本位置
 
 `cxx`
 
@@ -97,7 +98,7 @@ Like `cx`, but for Visual mode.
 
 `cxc`
 
-Clear any {motion} pending for exchange.
+取消所有的交换标记
 
 ## 使用Shift+Insert插入文本时保持原有格式
 
