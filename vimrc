@@ -223,3 +223,6 @@ nmap <leader>ccd :cs find d <C-R>=expand("<cword>")<CR><CR>
 " how to use that ?
 " :!gcc % && ./a.out
 " so when u type @: and it will execute the command again
+
+",+space去掉末尾空格
+nmap <leader><space> :FixWhitespace<cr>
