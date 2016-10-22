@@ -4,6 +4,12 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
+## vimdiff color
+
+在.bashrc里配置如下
+
+alias vd='vimdiff -S ~/.vim/colors/torte.vim'
+
 ## Tabular.vim
 
 [插件地址https://github.com/godlygeek/tabular.git](https://github.com/godlygeek/tabular.git)
