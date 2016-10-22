@@ -1,6 +1,6 @@
 # Usage
 
-- git clone https://github.com/54shady/dotvim.git.vim
+- git clone https://github.com/54shady/dotvim.git .vim
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
