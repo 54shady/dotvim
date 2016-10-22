@@ -5,8 +5,8 @@ set incsearch
 set hlsearch
 set nocompatible
 set nowrapscan
-set fenc=utf-8 
-set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936 
+set fenc=utf-8
+set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 "set autochdir
 let mapleader = ","
 set listchars=tab:▸\ ,trail:-,eol:¬
@@ -40,11 +40,11 @@ nnoremap <C-x> <C-w>x
     nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "status line
-set laststatus=2 
+set laststatus=2
 set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
-"set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")} 
-highlight StatusLine guifg=White guibg=Black 
-highlight StatusLineNC guifg=Black guibg=White ctermfg=red 
+"set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+highlight StatusLine guifg=White guibg=Black
+highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
 func! GetPWD()
 return substitute(getcwd(), "", "", "g")
