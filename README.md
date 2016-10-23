@@ -4,6 +4,23 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
+## vim_expression_register
+
+假设有个一个脚本为test.py其内容如下
+
+	#!/usr/bin/python
+	import uuid
+	import sys
+	sys.stdout.write(uuid.uuid4.__str__())
+
+现有如下映射,在插入模式下ctrl-j + d会触发执行这个脚本
+
+	imap <c-j>d <c-r>=system('/home/zeroway/test.py')<cr>
+
+在编辑任意文件是也可以设定这个imap
+
+	:imap <c-j>d <c-r>=system('/home/zeroway/t.py')<cr>
+
 ## vimdiff color
 
 在.bashrc里配置如下
