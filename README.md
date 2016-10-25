@@ -139,7 +139,7 @@ Like `cx`, but for Visual mode.
 :set nopaste
 ```
 
-## 搜索任何以:结果的单词
+## 搜索任何以:结尾的单词
 
 ```shell
 /\w\+:
@@ -148,3 +148,35 @@ Like `cx`, but for Visual mode.
 
 \+: 表示以:结尾
 ```
+
+## 正则表达式
+
+### 有如下文本
+
+```xml
+	<label abc def="ade">The is what we want</label>
+	<label abc def="ade">Why</label>
+	<label abc def="ade">Vim</label>
+	<label abc def="ade">Is</label>
+	<label abc def="ade">So</label>
+	<label abc def="ade">Great!</label>
+```
+
+在执行了下面命令后
+
+	:%s/^.*>\(.*\)<\/label>/\1/
+	解释如下
+	%s          匹配全部范围
+	^.*>        匹配开头所有到>
+	\(.*\)      匹配所有
+	<\/label>   匹配</label>
+	\1          在这里是\(.*\)
+
+结果如下
+
+	The is what we want
+	Why
+	Vim
+	Is
+	So
+	Great!
