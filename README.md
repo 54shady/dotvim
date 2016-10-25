@@ -180,3 +180,55 @@ Like `cx`, but for Visual mode.
 	Is
 	So
 	Great!
+
+## 批量加减
+
+在normal模式下 [n]ctrl-a或[n]ctrl-x可以给光标所在位置后第一个数字加上或前去n
+
+比如有下面一行文字
+
+	add or sub the digital (1) in the line
+
+把光标放在数字1以前按下[n]ctrl-a则1会加上n(ctrl-x同理)
+
+假设有下面内容,想要给itemname后面的数字批量加上或前去一个数n
+
+可以执行操作(假设都加上10)
+
+	:g/itemname/normal 10^A
+	解释下
+	g/itemname   为了让光标在数字前
+	normal       切换到normal模式
+	10           需要加的数
+	^A           是ctrl-v和ctrl-a两个组合键的结果表示VIM里的CTRL-A(CTRL-X同理)
+
+```xml
+<record itemname="1">
+	<entityA>Is Right 1 here</entityA>
+</record>
+<record itemname="2">
+	<entityA>Is Right 2 here</entityA>
+</record>
+<record itemname="3">
+	<entityA>Is 2 Right 7 here</entityA>
+</record>
+<record itemname="4">
+	<entityA>Is Right 4 here</entityA>
+</record>
+```
+结果如下
+```xml
+<record itemname="11">
+	<entityA>Is Right 1 here</entityA>
+</record>
+<record itemname="12">
+	<entityA>Is Right 2 here</entityA>
+</record>
+<record itemname="13">
+	<entityA>Is 2 Right 7 here</entityA>
+</record>
+<record itemname="14">
+	<entityA>Is Right 4 here</entityA>
+</record>
+```
+
