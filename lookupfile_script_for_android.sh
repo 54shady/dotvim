@@ -1,5 +1,6 @@
-# android top directory
-ANDROID_TOP_DIR="/home/zeroway/3288/src/3288_4.4"
+# run this script in android top directory
+ANDROID_TOP_DIR=$PWD
+echo 'Using' $ANDROID_TOP_DIR as android root dir.
 
 # header, don't know what's this
 echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > filenametags
