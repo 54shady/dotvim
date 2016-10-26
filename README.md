@@ -4,6 +4,21 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
+## lookupfile
+
+查找但前目录所有的文件,除了png和gif文件
+
+```shell
+#!/bin/sh
+
+# generate tag file for lookupfile plugin
+echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > filenametags
+find . -not -regex '.*\.\(png\|gif\)' -type f -printf "%f\t%p\t1\n" | \
+        sort -f >> filenametags
+```
+
+lookupfile_script_for_android.sh android使用
+
 ## vim_expression_register
 
 假设有个一个脚本为test.py其内容如下

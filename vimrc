@@ -188,10 +188,10 @@ endif
 
 "映射LookupFile为,lk
 nmap <silent> <leader>lk :LUTags<cr>
-"映射LUBufs为,ll
+"映射LUBufs为,lb
 nmap <silent> <leader>lb :LUBufs<cr>
-"映射LUWalk为,lw
-nmap <silent> <leader>lW :LUWalk<cr>
+"功能重复,无需映射
+"nmap <silent> <leader>lW :LUWalk<cr>
 
 "cscope config
 if has("cscope")
