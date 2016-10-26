@@ -6,6 +6,7 @@ echo 'Using' $ANDROID_TOP_DIR as android root dir.
 echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > filenametags
 
 # find files except these directories
+# don't include *.png *.gif *.o *.xml *.cmd
 find $ANDROID_TOP_DIR \
 	-path "$ANDROID_TOP_DIR/abi"                       -prune -o \
 	-path "$ANDROID_TOP_DIR/art"                       -prune -o \
@@ -33,4 +34,5 @@ find $ANDROID_TOP_DIR \
 	-path "$ANDROID_TOP_DIR/system"                    -prune -o \
 	-path "$ANDROID_TOP_DIR/tools"                     -prune -o \
 	-path "$ANDROID_TOP_DIR/vendor"                    -prune -o \
+	-not -regex '.*\.\(png\|gif\|o\|xml\|cmd\)'								 \
 	-type f -printf "%f\t%p\t1\n" | sort -f >> $ANDROID_TOP_DIR/filenametags
