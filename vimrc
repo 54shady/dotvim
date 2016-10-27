@@ -11,6 +11,11 @@ set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 let mapleader = ","
 set listchars=tab:▸\ ,trail:-,eol:¬
 
+" set no backup files
+set nobackup
+set nowritebackup
+set noswapfile
+
 "use the color in the runtime color path
 colorscheme peachpuff
 
@@ -226,3 +231,24 @@ nmap <leader>ccd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 ",+space去掉末尾空格
 nmap <leader><space> :FixWhitespace<cr>
+
+" Use morning as diff color
+if &diff
+	colorscheme morning
+endif
+
+" Add ignorance of whitespace to diff
+set diffopt+=iwhite
+
+" Toggle paste mode
+nmap <silent> <leader>p :set invpaste<CR>:set paste?<CR>
+
+" Allow command line editing like emacs
+cnoremap <C-A>      <Home>
+cnoremap <C-B>      <Left>
+cnoremap <C-E>      <End>
+cnoremap <C-F>      <Right>
+
+" Diff toggle two files
+nmap <silent><leader>df :difft<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:difft<CR>
+nmap <silent><leader>udf :diffo<CR>:wincmd l<CR>:diffo<CR>:wincmd h<CR>:diffo<CR>
