@@ -51,10 +51,6 @@ set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=
 highlight StatusLine guifg=White guibg=Black
 highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
-func! GetPWD()
-return substitute(getcwd(), "", "", "g")
-endf
-
 "save
 map <silent> <leader>w :w!<cr>
 
@@ -177,8 +173,8 @@ nmap <leader>as :AS<cr>
 nmap <leader>av :AV<cr>
 
 "map for list and unlist
-nmap <leader>lt :set list<cr>
-nmap <leader>nlt :set nolist<cr>
+nmap <silent><leader>lt :set list<cr>
+nmap <silent><leader>nlt :set nolist<cr>
 
 "lookupfile setting
 let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
