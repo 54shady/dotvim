@@ -210,6 +210,10 @@ Like `cx`, but for Visual mode.
 	比如
 	abcd ====> ![abcd](./pngs/abcd)
 
+用markdown链接的格式括起来
+
+	s/\(^.*$\)/[\1]\(\1\)/
+
 ## 批量加减
 
 在normal模式下 [n]ctrl-a或[n]ctrl-x可以给光标所在位置后第一个数字加上或前去n
@@ -270,3 +274,7 @@ Like `cx`, but for Visual mode.
 将当前行的内容复制到寄存器a
 
 	"ayy
+
+## 查看(倒数10条)历史命令
+
+	:history -10,
