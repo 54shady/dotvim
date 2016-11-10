@@ -278,3 +278,81 @@ Like `cx`, but for Visual mode.
 ## 查看(倒数10条)历史命令
 
 	:history -10,
+
+## 文本处理
+
+在调试内核驱动经常会需要查看调用栈情况,但是日志里打印的是倒序的如下
+
+```shell
+[    2.786705] [<c02cb4ac>] (rk3288_lcdc_config_done+0x64/0x280) from [<c02b82dc>] (rk_fb_pan_display+0x2a8/0x2f0)
+[    2.796627] [<c02b82dc>] (rk_fb_pan_display+0x2a8/0x2f0) from [<c02bbaac>] (rk_fb_register+0x844/0x918)
+[    2.805863] [<c02bbaac>] (rk_fb_register+0x844/0x918) from [<c02cd38c>] (rk3288_lcdc_probe+0x23c/0x2dc)
+[    2.815104] [<c02cd38c>] (rk3288_lcdc_probe+0x23c/0x2dc) from [<c030e0bc>] (platform_drv_probe+0x14/0x18)
+[    2.824515] [<c030e0bc>] (platform_drv_probe+0x14/0x18) from [<c030cc2c>] (really_probe+0xe4/0x30c)
+[    2.833411] [<c030cc2c>] (really_probe+0xe4/0x30c) from [<c030cfc0>] (driver_probe_device+0x70/0x98)
+[    2.842392] [<c030cfc0>] (driver_probe_device+0x70/0x98) from [<c030d048>] (__driver_attach+0x60/0x84)
+[    2.851544] [<c030d048>] (__driver_attach+0x60/0x84) from [<c030b470>] (bus_for_each_dev+0x50/0x90)
+[    2.860439] [<c030b470>] (bus_for_each_dev+0x50/0x90) from [<c030c354>] (bus_add_driver+0xd0/0x238)
+[    2.869335] [<c030c354>] (bus_add_driver+0xd0/0x238) from [<c030d554>] (driver_register+0x9c/0x138)
+[    2.878233] [<c030d554>] (driver_register+0x9c/0x138) from [<c00086dc>] (do_one_initcall+0x34/0xc8)
+[    2.887133] [<c00086dc>] (do_one_initcall+0x34/0xc8) from [<c0c0db28>] (do_initcalls+0x70/0xa0)
+[    2.895687] [<c0c0db28>] (do_initcalls+0x70/0xa0) from [<c0c0dbe8>] (kernel_init_freeable+0x90/0x130)
+[    2.904754] [<c0c0dbe8>] (kernel_init_freeable+0x90/0x130) from [<c0866b74>] (kernel_init+0x8/0xe4)
+[    2.913653] [<c0866b74>] (kernel_init+0x8/0xe4) from [<c000e398>] (ret_from_fork+0x14/0x3c)
+```
+
+使用下面的命令删除不需要的内容,留下函数调用情况
+
+	[    2.913653] [<c0866b74>] (kernel_init+0x8/0xe4) from [<c000e398>] (ret_from_fork+0x14/0x3c)
+	|------------A--------------|-----B-----|--------------C-------------|------------D----------|
+
+	:%s/.*(\(.*\)+.*(\(.*\)+.*/\2 ===> \1/
+
+	.*( 	匹配段A
+	\(.*\) 	匹配段B
+	+.*( 	匹配段C
+	\(.*\) 	匹配段D
+	\1		是段B
+	\2		是段D
+
+执行结果如下
+
+```shell
+rk_fb_pan_display ===> rk3288_lcdc_config_done
+rk_fb_register ===> rk_fb_pan_display
+rk3288_lcdc_probe ===> rk_fb_register
+platform_drv_probe ===> rk3288_lcdc_probe
+really_probe ===> platform_drv_probe
+driver_probe_device ===> really_probe
+__driver_attach ===> driver_probe_device
+bus_for_each_dev ===> __driver_attach
+bus_add_driver ===> bus_for_each_dev
+driver_register ===> bus_add_driver
+do_one_initcall ===> driver_register
+do_initcalls ===> do_one_initcall
+kernel_init_freeable ===> do_initcalls
+kernel_init ===> kernel_init_freeable
+ret_from_fork ===> kernel_init
+```
+
+对掉所有的行结果如下,之后就是整个栈调用过程
+
+	:g/^/m0
+
+```shell
+ret_from_fork ===> kernel_init
+kernel_init ===> kernel_init_freeable
+kernel_init_freeable ===> do_initcalls
+do_initcalls ===> do_one_initcall
+do_one_initcall ===> driver_register
+driver_register ===> bus_add_driver
+bus_add_driver ===> bus_for_each_dev
+bus_for_each_dev ===> __driver_attach
+__driver_attach ===> driver_probe_device
+driver_probe_device ===> really_probe
+really_probe ===> platform_drv_probe
+platform_drv_probe ===> rk3288_lcdc_probe
+rk3288_lcdc_probe ===> rk_fb_register
+rk_fb_register ===> rk_fb_pan_display
+rk_fb_pan_display ===> rk3288_lcdc_config_done
+```
