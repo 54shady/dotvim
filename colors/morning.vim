@@ -24,7 +24,7 @@ hi StatusLineNC term=reverse cterm=reverse gui=reverse
 hi VertSplit term=reverse cterm=reverse gui=reverse
 hi Visual term=reverse ctermbg=grey guibg=grey80
 hi VisualNOS term=underline,bold cterm=underline,bold gui=underline,bold
-hi DiffText term=standout cterm=standout ctermbg=White gui=NONE guibg=NONE
+hi DiffText term=standout cterm=standout ctermfg=NONE ctermbg=NONE ctermbg=White gui=NONE guibg=NONE
 hi Cursor guibg=Green guifg=NONE
 hi lCursor guibg=Cyan guifg=NONE
 hi Directory term=bold ctermfg=DarkBlue guifg=Blue
@@ -39,9 +39,9 @@ hi WarningMsg term=standout ctermfg=Black guifg=Red
 hi WildMenu term=standout ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
 hi Folded term=standout ctermbg=Grey ctermfg=DarkBlue guibg=LightGrey guifg=DarkBlue
 hi FoldColumn term=standout ctermbg=Grey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
-hi DiffAdd term=bold ctermbg=LightBlue guibg=LightBlue
-hi DiffChange term=bold ctermbg=LightMagenta guibg=LightMagenta
-hi DiffDelete term=bold ctermfg=Blue ctermbg=LightCyan gui=bold guifg=Blue guibg=LightCyan
+hi DiffAdd term=bold ctermbg=NONE ctermfg=NONE guibg=LightBlue
+hi DiffChange term=bold ctermbg=NONE ctermfg=NONE guibg=LightMagenta
+hi DiffDelete term=bold ctermfg=NONE ctermbg=NONE gui=bold guifg=Blue guibg=LightCyan
 hi CursorLine term=underline cterm=underline guibg=grey80
 hi CursorColumn term=reverse ctermbg=grey guibg=grey80
 
