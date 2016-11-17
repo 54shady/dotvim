@@ -273,7 +273,11 @@ Like `cx`, but for Visual mode.
 
 将当前行的内容复制到寄存器a
 
-	"ayy
+	"ayy 或 "aY
+
+相关内容
+
+	:help <c-r>
 
 ## 查看(倒数10条)历史命令
 
