@@ -278,6 +278,8 @@ Like `cx`, but for Visual mode.
 相关内容
 
 	:help <c-r>
+	Shift + Insert 拷贝系统剪切板内容
+	vim中寄存器"+"表示系统剪切板,所以可以用"+p代替Shift+Insert组合键
 
 ## 查看(倒数10条)历史命令
 
