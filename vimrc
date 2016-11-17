@@ -248,3 +248,12 @@ cnoremap <C-F>      <Right>
 " Diff toggle two files
 nmap <silent><leader>df :difft<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:difft<CR>
 nmap <silent><leader>udf :diffo<CR>:wincmd l<CR>:diffo<CR>:wincmd h<CR>:diffo<CR>
+
+" Show syntax highlighting groups for word under cursor(Ctrl+Shift+g)
+nmap <C-S-G> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
