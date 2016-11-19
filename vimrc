@@ -172,9 +172,8 @@ nmap <leader>a :A<cr>
 nmap <leader>as :AS<cr>
 nmap <leader>av :AV<cr>
 
-"map for list and unlist
-nmap <silent><leader>lt :set list<cr>
-nmap <silent><leader>nlt :set nolist<cr>
+" toggle list and unlist
+nmap <silent><leader>lt :set list!<cr>
 
 "lookupfile setting
 let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
