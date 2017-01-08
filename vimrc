@@ -278,5 +278,12 @@ function! MarkdownLevel()
     endif
     return "="
 endfunction
+
+function! MarkdownFoldText()
+	let foldsize = (v:foldend - v:foldstart)
+	return getline(v:foldstart).' ('.foldsize.' line)'
+endfunction
+
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
+au BufEnter *.md setlocal foldtext=MarkdownFoldText()
