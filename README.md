@@ -19,6 +19,10 @@ find . -not -regex '.*\.\(png\|gif\)' -type f -printf "%f\t%p\t1\n" | \
 
 lookupfile_script_for_android.sh android使用
 
+- ln -s ~/mytools/genlookupfiletags_common ~/.vim/gentags.sh
+
+- ln -s ~/mytools/genlookupfiletags_android ~/.vim/lookupfile_script_for_android.sh
+
 ## vim_expression_register
 
 假设有个一个脚本为test.py其内容如下
