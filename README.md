@@ -6,22 +6,21 @@
 
 ## lookupfile
 
-查找但前目录所有的文件,除了png和gif文件
+使用方法
+
+	ln -s ~/mytools/genlookupfiletags_common ~/.vim/gentags.sh
+	ln -s ~/mytools/genlookupfiletags_android ~/.vim/lookupfile_script_for_android.sh
+	chmod a+x ~/mytools/genlookupfiletags_common
+	chmod a+x ~/mytools/genlookupfiletags_android
+
+其中gentags.sh(通用)查找但前目录所有的文件,除了png和gif文件
 
 ```shell
-#!/bin/sh
-
-# generate tag file for lookupfile plugin
 echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > filenametags
 find . -not -regex '.*\.\(png\|gif\)' -type f -printf "%f\t%p\t1\n" | \
         sort -f >> filenametags
 ```
-
-lookupfile_script_for_android.sh android使用
-
-- ln -s ~/mytools/genlookupfiletags_common ~/.vim/gentags.sh
-
-- ln -s ~/mytools/genlookupfiletags_android ~/.vim/lookupfile_script_for_android.sh
+lookupfile_script_for_android.sh给android使用
 
 ## vim_expression_register
 
@@ -44,7 +43,7 @@ lookupfile_script_for_android.sh android使用
 
 在.bashrc里配置如下
 
-alias vd='vimdiff -S ~/.vim/colors/torte.vim'
+	alias vd='vimdiff -S ~/.vim/colors/torte.vim'
 
 ## Tabular.vim
 
@@ -104,7 +103,7 @@ var video = {
 
 其中 \zs 可以查看帮助
 
-:help \zs
+	:help \zs
 
 ```shell
 var video = {
@@ -345,7 +344,7 @@ kernel_init ===> kernel_init_freeable
 ret_from_fork ===> kernel_init
 ```
 
-对掉所有的行结果如下,之后就是整个栈调用过程
+对掉所有的行,结果如下,之后就是整个栈调用过程(翻转每一行)
 
 	:g/^/m0
 
