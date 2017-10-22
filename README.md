@@ -35,9 +35,9 @@ lookupfile_script_for_android.sh给android使用
 
 	imap <c-j>d <c-r>=system('/home/zeroway/test.py')<cr>
 
-在编辑任意文件是也可以设定这个imap
+在编辑任意文件时也可以设定这个imap
 
-	:imap <c-j>d <c-r>=system('/home/zeroway/t.py')<cr>
+	:imap <c-j>d <c-r>=system('/home/zeroway/test.py')<cr>
 
 ## vimdiff color
 
