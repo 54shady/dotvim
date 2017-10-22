@@ -101,7 +101,7 @@ var video = {
 
 ### 执行 :Tab /:\zs 结果如下
 
-其中 \zs 可以查看帮助
+其中 \zs 可以查看帮助(start from here)
 
 	:help \zs
 
