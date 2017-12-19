@@ -257,6 +257,7 @@ nmap <silent><leader>udf :diffo<CR>:wincmd l<CR>:diffo<CR>:wincmd h<CR>:diffo<CR
 "  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 "endfunc
 
+" Markdown file forder
 function! MarkdownLevel()
     if getline(v:lnum) =~ '^# .*$'
         return ">1"
@@ -289,7 +290,7 @@ au BufEnter *.md setlocal foldmethod=expr
 au BufEnter *.md setlocal foldtext=MarkdownFoldText()
 
 " DirDiff config
-let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore"
+let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore,tags,*.tmp,modules.order,modules.builtin,*.dtb,*.bin,*.img"
 let g:DirDiffAddArgs = "-w"
 let g:DirDiffEnableMappings = 1
 let g:DirDiffWindowSize = 5
