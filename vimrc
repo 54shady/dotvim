@@ -287,3 +287,9 @@ endfunction
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
 au BufEnter *.md setlocal foldtext=MarkdownFoldText()
+
+" DirDiff config
+let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore"
+let g:DirDiffAddArgs = "-w"
+let g:DirDiffEnableMappings = 1
+let g:DirDiffWindowSize = 5
