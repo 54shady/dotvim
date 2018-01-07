@@ -294,3 +294,6 @@ let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,Documentation,*.o.cmd,*.cmd,*.
 let g:DirDiffAddArgs = "-w"
 let g:DirDiffEnableMappings = 1
 let g:DirDiffWindowSize = 5
+
+" 80 characters limit each line
+setlocal textwidth=80
