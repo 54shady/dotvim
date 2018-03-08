@@ -70,6 +70,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 nmap <leader>tn :tnext<CR>
 nmap <leader>tp :tprevious<CR>
 nmap <leader>ts :tselect<CR>
+nmap <leader>tf :tag<SPACE>
 
 "quickfix settings
 nmap <leader>co :copen<CR>
@@ -229,7 +230,7 @@ nmap <leader><space> :FixWhitespace<cr>
 
 " Use morning as diff color
 if &diff
-	colorscheme morning
+	colorscheme simplifysimplify-light
 endif
 
 " Add ignorance of whitespace to diff
