@@ -22,6 +22,9 @@ colorscheme peachpuff
 "set mouse=a
 syntax on
 
+"enable filetype plugin
+filetype plugin on
+
 "vimManagerWindow
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap <silent> wm :WMToggle<cr>
