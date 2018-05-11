@@ -24,6 +24,7 @@ syntax on
 
 "enable filetype plugin
 filetype plugin on
+filetype indent on
 
 "vimManagerWindow
 let g:winManagerWindowLayout='FileExplorer|TagList'
