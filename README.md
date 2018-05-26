@@ -4,6 +4,45 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
+## 搜索文本
+
+想要在文本中同时搜索insert_mode,InsertMode,INSERT_MODE
+
+	/\v\C%(insert_mode|InsertMode|INSERT_MODE)
+
+在文件(所有.c文件)或路径中搜索
+
+	vim /\v\C%(insert_mode|InsertMode|INSERT_MODE)/ *.c
+
+使用插件vim-abolish
+
+	:Subvert /insert_mode
+
+### abolish case switch
+
+相关帮助
+
+	help cr
+
+有如下文本内容
+
+	insert_mode
+	visual_mode
+	cmdline_mode
+	InsertMode
+	VisualMode
+	CmdlineMode
+
+使用如下命令搜索
+
+	:Subvert /{insert,visual,cmdline}_mode
+
+在搜索到的词上按crc切换到camelCase
+
+在搜索到的词上按crm切换到MixedCase
+
+在搜索到的词上按crs切换到snake_case
+
 ## lookupfile
 
 使用方法
@@ -283,6 +322,10 @@ Like `cx`, but for Visual mode.
 	:help <c-r>
 	Shift + Insert 拷贝系统剪切板内容
 	vim中寄存器"+"表示系统剪切板,所以可以用"+p代替Shift+Insert组合键
+
+### 插入模式下使用操作寄存器
+
+在插入模式下(或这是命令模式),按下ctrl-r + 寄存器名即可插入寄存器内容
 
 ## 查看(倒数10条)历史命令
 
