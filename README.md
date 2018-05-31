@@ -206,7 +206,22 @@ Like `cx`, but for Visual mode.
 \+: 表示以:结尾
 ```
 
-## 正则表达式
+## 正则表达式(Regular Expression, regex)
+
+### 将C++行注释转换成C行注释
+
+	C++中的行注释为//this is comment in c plus plus
+	C中的行注释为/* this is comment in c language */
+
+	使用下面的命令可以将c++的注释转c
+	:%s/\/\/\(.*\)/\/\* \1 \*\//g
+
+命令解析:
+
+	%s	全文本替换
+	\/\/	搜索//
+	\(.*\)	匹配所有内容(这里匹配//之后的所有内容)
+	\1	表示\(.*\)里匹配的内容
 
 ### 有如下文本
 
