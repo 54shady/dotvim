@@ -302,3 +302,8 @@ let g:DirDiffWindowSize = 5
 
 " 80 characters limit each line
 setlocal textwidth=80
+
+" project tags setting example
+" In this case for all files match the pattern ~/proj2/*
+" the tag files ~/proj2/tags and ~/work/common.tags will be used
+" let g:ProjTags += [[ "~/proj2", "~/proj2/tags", "~/work/common.tags" ]]
