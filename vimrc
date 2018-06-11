@@ -294,8 +294,12 @@ au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
 au BufEnter *.md setlocal foldtext=MarkdownFoldText()
 
-" DirDiff config
-let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore,tags,*.tmp,modules.order,modules.builtin,*.dtb,*.bin,*.img,*.pyc"
+" DirDiff config, wrap the long line
+let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,
+	\ Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore,
+	\ tags,*.tmp,modules.order,modules.builtin,*.dtb,
+	\ *.bin,*.img,*.pyc"
+
 let g:DirDiffAddArgs = "-w"
 let g:DirDiffEnableMappings = 1
 let g:DirDiffWindowSize = 5
@@ -307,3 +311,7 @@ setlocal textwidth=80
 " In this case for all files match the pattern ~/proj2/*
 " the tag files ~/proj2/tags and ~/work/common.tags will be used
 " let g:ProjTags += [[ "~/proj2", "~/proj2/tags", "~/work/common.tags" ]]
+" let g:ProjTags += [[ "path1"
+" \ "path2"
+" \ "path3"
+" \ "path4" ]]
