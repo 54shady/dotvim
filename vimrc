@@ -296,9 +296,9 @@ au BufEnter *.md setlocal foldtext=MarkdownFoldText()
 
 " DirDiff config, wrap the long line
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,
-	\ Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore,
-	\ tags,*.tmp,modules.order,modules.builtin,*.dtb,
-	\ *.bin,*.img,*.pyc"
+	\Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore,
+	\tags,*.tmp,modules.order,modules.builtin,*.dtb,
+	\*.bin,*.img,*.pyc"
 
 let g:DirDiffAddArgs = "-w"
 let g:DirDiffEnableMappings = 1
