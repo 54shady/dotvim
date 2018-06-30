@@ -38,16 +38,16 @@ if &diff
 endif
 " }}}
 
-"Status line {{{
+"StatusLine {{{
 set laststatus=2
 set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
 highlight StatusLine guifg=White guibg=Black
 highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 " }}}
 
-" Key maps {{{
+" KeyMaps {{{
 
-" ManagerWindow config {{{
+" ManagerWindow {{{
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap <silent> wm :WMToggle<cr>
 " }}}
@@ -87,7 +87,7 @@ nmap <leader>ts :tselect<CR>
 nmap <leader>tf :tag<SPACE>
 " }}}
 
-"quickfix settings {{{
+"quickfix {{{
 nmap <leader>co :copen<CR>
 nmap <leader>cl :cclose<CR>
 nmap <leader>cw :cw 10<cr>
@@ -188,14 +188,14 @@ nmap <leader>ks :marks<cr>
 "或者执行doctags *.txt | sort > tags来生成tags文件
 nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
 " Misc key maps end }}}
-" key maps end}}}
+" KeyMaps }}}
 
 " AutoCmd {{{
 " Only do this part when compiled vim with autocommands supported
 if has("autocmd")
 " when .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
-autocmd! bufreadpre .vimrc set foldmethod=marker
+autocmd! bufreadpre .vimrc,vimrc set foldmethod=marker
 endif
 " }}}
 
