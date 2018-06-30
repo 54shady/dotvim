@@ -1,6 +1,6 @@
+" Common {{{
 set shiftwidth=4
 set tabstop=4
-"set et
 set incsearch
 set hlsearch
 set nocompatible
@@ -26,76 +26,96 @@ syntax on
 filetype plugin on
 filetype indent on
 
-"vimManagerWindow
+" 80 characters limit each line
+setlocal textwidth=80
+
+" Add ignorance of whitespace to diff
+set diffopt+=iwhite
+
+" Use morning as diff color
+if &diff
+	colorscheme simplifysimplify-light
+endif
+" }}}
+
+"Status line {{{
+set laststatus=2
+set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
+highlight StatusLine guifg=White guibg=Black
+highlight StatusLineNC guifg=Black guibg=White ctermfg=red
+" }}}
+
+" Key maps {{{
+
+" ManagerWindow config {{{
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap <silent> wm :WMToggle<cr>
+" }}}
 
-"window move
+"a.vim plugin key map {{{
+nmap <leader>a :A<cr>
+nmap <leader>as :AS<cr>
+nmap <leader>av :AV<cr>
+" }}}
+
+" Allow command line editing like emacs {{{
+cnoremap <C-A>      <Home>
+cnoremap <C-B>      <Left>
+cnoremap <C-E>      <End>
+cnoremap <C-F>      <Right>
+" }}}
+
+" map with count, overlay the default Q command {{{
+" nQ will execute the command
+nnoremap Q n.
+nnoremap Q @='n.'<CR>
+nnoremap Q :normal n.<CR>
+" }}}
+
+"window move {{{
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-x> <C-w>x
+" }}}
 
-"cscope C-_ is ctrl+_
-:set cscopequickfix=s-,c-,d-,i-,t-,e-
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-"status line
-set laststatus=2
-set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
-"set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-highlight StatusLine guifg=White guibg=Black
-highlight StatusLineNC guifg=Black guibg=White ctermfg=red
-
-"save
-map <silent> <leader>w :w!<cr>
-
-"quit
-map <silent> <leader>q :qa!<cr>
-
-"fast reloading of the .vimrc
-map <silent> <leader>ss :source ~/.vimrc<cr>
-
-"fast editing of .vimrc
-map <silent> <leader>ee :e ~/.vimrc<cr>
-
-"when .vimrc is edited, reload it
-autocmd! bufwritepost .vimrc source ~/.vimrc
-
-"tags
+"tags {{{
 nmap <leader>tn :tnext<CR>
 nmap <leader>tp :tprevious<CR>
 nmap <leader>ts :tselect<CR>
 nmap <leader>tf :tag<SPACE>
+" }}}
 
-"quickfix settings
+"quickfix settings {{{
 nmap <leader>co :copen<CR>
 nmap <leader>cl :cclose<CR>
 nmap <leader>cw :cw 10<cr>
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
+" }}}
 
-"marks
-nmap <leader>ks :marks<cr>
+"buffers {{{
+nmap <leader>ls :ls<CR>
+nmap <leader>bd :bd<CR>
+nmap <leader>bn :bn<CR>
+nmap <leader>bp :bp<CR>
+nmap <leader>bb :b#<CR>
+nmap <leader>hd :hide<CR>
+" }}}
 
-"set path, set the code path you want to built, should disable the autochdir config
-"for example below
-"set path=/opt/FriendlyARM/mini2440/linux-3.17.4
+"disable arrow keys {{{
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+" }}}
 
-"set makeprg, this is the realy call, depend on the path
-"the genk can be a shell script or something else, which do the real work
-"set mp=genk
-
-"make program, which use the mp option instead
-"nmap <F5> :make<cr><cr><cr>
+" Misc key maps {{{
 
 "vimgrep
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
@@ -105,14 +125,6 @@ noremap <F4> :vimgrep /<C-R>=expand("<cword>")<CR>/ ##<CR>
 
 "find the word under the cursor in the current file.
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
-
-"buffer
-nmap <leader>ls :ls<CR>
-nmap <leader>bd :bd<CR>
-nmap <leader>bn :bn<CR>
-nmap <leader>bp :bp<CR>
-nmap <leader>bb :b#<CR>
-nmap <leader>hd :hide<CR>
 
 "select a text & search
 vnoremap * y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -140,29 +152,33 @@ execute ":sp"
 execute ":tag " w " "
 endfunction
 
-"gdb mappings
-"nmap sg :source /root/.vim/macros/gdb_mappings.vim<CR>
-"use arm-linux-gdb for remote debug instead of gdb
-"set gdbprg=/opt/FriendlyARM/mini2440/4_3_2/usr/local/arm/4.3.2/bin/arm-linux-gdb
+" toggle list and unlist
+nmap <silent><leader>lt :set list!<cr>
 
-"config for undo plugin
-set undodir=~/.vim/tmp/.undodir
-set undofile
-set history=100
-set undolevels=100
+",+space去掉末尾空格
+nmap <leader><space> :FixWhitespace<cr>
 
-"disable arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" Diff toggle two files
+nmap <silent><leader>df :difft<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:difft<CR>
+nmap <silent><leader>udf :diffo<CR>:wincmd l<CR>:diffo<CR>:wincmd h<CR>:diffo<CR>
 
-"no uganda
-"set shortmess=I
+"save
+map <silent> <leader>w :w!<cr>
+
+"quit
+map <silent> <leader>q :qa!<cr>
+
+"fast reloading of the .vimrc
+map <silent> <leader>ss :source ~/.vimrc<cr>
+
+"fast editing of .vimrc
+map <silent> <leader>ee :e ~/.vimrc<cr>
+
+" Toggle paste mode
+nmap <silent> <leader>p :set invpaste<CR>:set paste?<CR>
+
+"marks
+nmap <leader>ks :marks<cr>
 
 "vim提供的用于将.txt的文档生成含有tag的文档以便查找
 ".txt里被星号包裹的就是tag
@@ -171,16 +187,66 @@ inoremap <right> <nop>
 "再make tags就能将该目录下所有.txt制作生成tags
 "或者执行doctags *.txt | sort > tags来生成tags文件
 nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
+" Misc key maps end }}}
+" key maps end}}}
 
-"map for a.vim plugin
-nmap <leader>a :A<cr>
-nmap <leader>as :AS<cr>
-nmap <leader>av :AV<cr>
+" AutoCmd {{{
+" Only do this part when compiled vim with autocommands supported
+if has("autocmd")
+" when .vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufreadpre .vimrc set foldmethod=marker
+endif
+" }}}
 
-" toggle list and unlist
-nmap <silent><leader>lt :set list!<cr>
+" Unused {{{
 
-"lookupfile setting
+"Search in all buffers {{{
+":vim /pattern/ ##    ## reference the arglist
+
+" @: will repeat the last command in history
+" how to use that ?
+" :!gcc % && ./a.out
+" so when u type @: and it will execute the command again
+
+" Show syntax highlighting groups for word under cursor(Ctrl+Shift+g)
+"nmap <C-S-A> :call <SID>SynStack()<CR>
+"function! <SID>SynStack()
+"  if !exists("*synstack")
+"    return
+"  endif
+"  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"endfunc
+" }}}
+
+"set path, set the code path you want to built, should disable the autochdir config
+"for example below
+"set path=/opt/FriendlyARM/mini2440/linux-3.17.4
+
+"set makeprg, this is the realy call, depend on the path
+"the genk can be a shell script or something else, which do the real work
+"set mp=genk
+
+"make program, which use the mp option instead
+"nmap <F5> :make<cr><cr><cr>
+
+"gdb mappings
+"nmap sg :source /root/.vim/macros/gdb_mappings.vim<CR>
+"use arm-linux-gdb for remote debug instead of gdb
+"set gdbprg=/opt/FriendlyARM/mini2440/4_3_2/usr/local/arm/4.3.2/bin/arm-linux-gdb
+"
+"no uganda
+"set shortmess=I
+" }}}
+
+"Undo plugin {{{
+set undodir=~/.vim/tmp/.undodir
+set undofile
+set history=100
+set undolevels=100
+" }}}
+
+"Lookupfile {{{
 let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
 let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
@@ -197,8 +263,9 @@ nmap <silent> <leader>lk :LUTags<cr>
 nmap <silent> <leader>lb :LUBufs<cr>
 "功能重复,无需映射
 "nmap <silent> <leader>lW :LUWalk<cr>
+" }}}
 
-"cscope config
+"Cscope {{{
 if has("cscope")
 	set csprg=/usr/bin/cscope
 	set csto=1
@@ -221,48 +288,19 @@ nmap <leader>ccf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>cci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>ccd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-"search in all buffers
-":vim /pattern/ ##    ## reference the arglist
+"cscope C-_ is ctrl+_
+:set cscopequickfix=s-,c-,d-,i-,t-,e-
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" }}}
 
-" @: will repeat the last command in history
-" how to use that ?
-" :!gcc % && ./a.out
-" so when u type @: and it will execute the command again
-
-",+space去掉末尾空格
-nmap <leader><space> :FixWhitespace<cr>
-
-" Use morning as diff color
-if &diff
-	colorscheme simplifysimplify-light
-endif
-
-" Add ignorance of whitespace to diff
-set diffopt+=iwhite
-
-" Toggle paste mode
-nmap <silent> <leader>p :set invpaste<CR>:set paste?<CR>
-
-" Allow command line editing like emacs
-cnoremap <C-A>      <Home>
-cnoremap <C-B>      <Left>
-cnoremap <C-E>      <End>
-cnoremap <C-F>      <Right>
-
-" Diff toggle two files
-nmap <silent><leader>df :difft<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:difft<CR>
-nmap <silent><leader>udf :diffo<CR>:wincmd l<CR>:diffo<CR>:wincmd h<CR>:diffo<CR>
-
-" Show syntax highlighting groups for word under cursor(Ctrl+Shift+g)
-"nmap <C-S-A> :call <SID>SynStack()<CR>
-"function! <SID>SynStack()
-"  if !exists("*synstack")
-"    return
-"  endif
-"  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-"endfunc
-
-" Markdown file forder
+" Markdown forder {{{
 function! MarkdownLevel()
     if getline(v:lnum) =~ '^# .*$'
         return ">1"
@@ -293,8 +331,9 @@ endfunction
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
 au BufEnter *.md setlocal foldtext=MarkdownFoldText()
+" }}}
 
-" DirDiff config, wrap the long line
+" DirDiff {{{
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,
 	\Documentation,*.o.cmd,*.cmd,*.o,.git,.gitignore,
 	\tags,*.tmp,modules.order,modules.builtin,*.dtb,
@@ -303,11 +342,9 @@ let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,
 let g:DirDiffAddArgs = "-w"
 let g:DirDiffEnableMappings = 1
 let g:DirDiffWindowSize = 5
+" }}}
 
-" 80 characters limit each line
-setlocal textwidth=80
-
-" project tags setting example
+" Project tags {{{
 " In this case for all files match the pattern ~/proj2/*
 " the tag files ~/proj2/tags and ~/work/common.tags will be used
 " let g:ProjTags += [[ "~/proj2", "~/proj2/tags", "~/work/common.tags" ]]
@@ -315,3 +352,4 @@ setlocal textwidth=80
 " \ "path2"
 " \ "path3"
 " \ "path4" ]]
+" }}}
