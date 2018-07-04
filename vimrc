@@ -9,6 +9,8 @@ set fenc=utf-8
 set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 "set autochdir
 let mapleader = ","
+
+" triangle symbol : enter insert mode and type ctrl-v u25b8
 set listchars=tab:▸\ ,trail:-,eol:¬
 
 " set no backup files
