@@ -169,12 +169,12 @@ endif
 if !hasmapto('<Plug>MarkSet', 'v')
 	vmap <unique> <silent> <leader>m <Plug>MarkSet
 endif
-if !hasmapto('<Plug>MarkRegex', 'n')
-	nmap <unique> <silent> <leader>r <Plug>MarkRegex
-endif
-if !hasmapto('<Plug>MarkRegex', 'v')
-	vmap <unique> <silent> <leader>r <Plug>MarkRegex
-endif
+" if !hasmapto('<Plug>MarkRegex', 'n')
+" 	nmap <unique> <silent> <leader>r <Plug>MarkRegex
+" endif
+" if !hasmapto('<Plug>MarkRegex', 'v')
+" 	vmap <unique> <silent> <leader>r <Plug>MarkRegex
+" endif
 if !hasmapto('<Plug>MarkClear', 'n')
 	nmap <unique> <silent> <leader>n <Plug>MarkClear
 endif
