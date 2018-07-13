@@ -83,27 +83,27 @@ nnoremap <C-x> <C-w>x
 " }}}
 
 "tags {{{
-nmap <leader>tn :tnext<CR>
-nmap <leader>tp :tprevious<CR>
-nmap <leader>ts :tselect<CR>
+nmap <silent> <leader>tn :tnext<CR>
+nmap <silent> <leader>tp :tprevious<CR>
+nmap <silent> <leader>ts :tselect<CR>
 nmap <leader>tf :tag<SPACE>
 " }}}
 
 "quickfix {{{
-nmap <leader>co :copen<CR>
-nmap <leader>cl :cclose<CR>
-nmap <leader>cw :cw 10<cr>
-nmap <leader>cn :cn<cr>
-nmap <leader>cp :cp<cr>
+nmap <silent> <leader>co :copen<CR>
+nmap <silent> <leader>cl :cclose<CR>
+nmap <silent> <leader>cw :cw 10<cr>
+nmap <silent> <leader>cn :cn<cr>
+nmap <silent> <leader>cp :cp<cr>
 " }}}
 
 "buffers {{{
-nmap <leader>ls :ls<CR>
-nmap <leader>bd :bd<CR>
-nmap <leader>bn :bn<CR>
-nmap <leader>bp :bp<CR>
-nmap <leader>bb :b#<CR>
-nmap <leader>hd :hide<CR>
+nmap <silent> <leader>ls :ls<CR>
+nmap <silent> <leader>bd :bd<CR>
+nmap <silent> <leader>bn :bn<CR>
+nmap <silent> <leader>bp :bp<CR>
+nmap <silent> <leader>bb :b#<CR>
+nmap <silent> <leader>hd :hide<CR>
 " }}}
 
 "disable arrow keys {{{
@@ -123,7 +123,7 @@ inoremap <right> <nop>
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 "noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 "search keyword in the open buffers
-noremap <F4> :vimgrep /<C-R>=expand("<cword>")<CR>/ ##<CR>
+noremap <leader>fb :vimgrep /<C-R>=expand("<cword>")<CR>/ ##<CR>
 
 "find the word under the cursor in the current file.
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
