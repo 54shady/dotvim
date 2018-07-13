@@ -122,6 +122,9 @@ inoremap <right> <nop>
 " quick way to enter command mode
 noremap <leader>r :
 
+" repeat last command
+noremap <leader>R @:
+
 "vimgrep
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 "noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
