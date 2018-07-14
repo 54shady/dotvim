@@ -119,13 +119,13 @@ inoremap <right> <nop>
 
 " Misc key maps {{{
 
-" quick way to enter command mode
+" [r]un command mode
 noremap <leader>r :
 
-" launch external program
+" [e]xternal [r]un program
 noremap <leader>er :!
 
-" repeat last command
+" [R]epeat last command
 noremap <leader>R @:
 
 "vimgrep
