@@ -122,6 +122,9 @@ inoremap <right> <nop>
 " quick way to enter command mode
 noremap <leader>r :
 
+" launch external program
+noremap <leader>er :!
+
 " repeat last command
 noremap <leader>R @:
 
