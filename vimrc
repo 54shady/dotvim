@@ -204,10 +204,20 @@ nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
 " AutoCmd {{{
 " Only do this part when compiled vim with autocommands supported
 if has("autocmd")
+
+" VIMRC {{{
 " when .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 autocmd! bufreadpre .vimrc,vimrc set foldmethod=marker
+" }}}
+
+" Autopep8 plugin {{{
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+autocmd FileType python set equalprg=autopep8\ -
+" }}}
+
 endif
+
 " }}}
 
 " Unused {{{
