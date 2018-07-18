@@ -374,3 +374,10 @@ let g:DirDiffWindowSize = 5
 " \ "path3"
 " \ "path4" ]]
 " }}}
+
+" Preload tags {{{
+" preload python builtin tags if necessary
+if filereadable("/usr/lib/python2.7/tags")
+	autocmd FileType python set tags+=/usr/lib/python2.7/tags
+endif
+" }}}
