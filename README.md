@@ -4,6 +4,16 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
+## 查找关键字
+
+在要查找的关键字上按左方括号I列出所有关键字的地方
+
+	[I
+
+使用如下按键组合来选择将要跳转的地方N + 左方括号 + tab
+
+	N[<tab>
+
 ## 搜索文本
 
 想要在文本中同时搜索insert_mode,InsertMode,INSERT_MODE

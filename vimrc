@@ -131,7 +131,8 @@ noremap <leader>R @:
 "vimgrep
 "noremap <F5> :vimgrep /<C-R>=expand("<C-R>+")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 "noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
-"search keyword in the open buffers
+"search keyword in the open buffers(must be in arglist)
+" ## stand for arglist files
 noremap <leader>fb :vimgrep /<C-R>=expand("<cword>")<CR>/ ##<CR>
 
 "find the word under the cursor in the current file.
