@@ -82,11 +82,21 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-x> <C-w>x
 " }}}
 
-"tags {{{
+" tags {{{
 nmap <silent> <leader>tn :tnext<CR>
 nmap <silent> <leader>tp :tprevious<CR>
 nmap <silent> <leader>ts :tselect<CR>
+
+" tag find
 nmap <leader>tf :tag<SPACE>
+
+" tag to word under the cursor
+map tt :call Tag_to()<CR>
+function! Tag_to()
+let w = expand("<cword>")
+execute ":sp"
+execute ":tag " w " "
+endfunction
 " }}}
 
 "quickfix {{{
@@ -150,10 +160,10 @@ execute "vimgrep " w " *"
 endfunction
 
 "grep the word under the cursor
-map g<C-p> :call Grep_word()
+map g<C-p> :call Grep_word()<CR>
 function! Grep_word()
 let w = expand("<cword>")
-execute ":!mygrep --color=auto " w " /path/* -nR "
+execute ":!grep --color=auto " w " /path/* -nR "
 endfunction
 
 "tag to grep word

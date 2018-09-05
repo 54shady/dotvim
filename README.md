@@ -358,6 +358,46 @@ Like `cx`, but for Visual mode.
 
 ## 文本处理
 
+### 实例1
+
+有如下文本内容
+
+	TODO: title1
+	a things to do...
+	TODO: title2
+	b things to do...
+	c things to do...
+	TODO: title3
+	d things to do...
+	TODO: title4
+	e things to do...
+	f things to do...
+
+想要得到如下结果
+
+	TODO: title1
+	TODO: title2
+	TODO: title3
+	TODO: title4
+
+涉及知识点(寄存器追加内容)
+
+拷贝内容到寄存器a中
+
+	"ayy
+
+向寄存器a中追加内容(使用A)
+
+	"Ayy
+
+所以可以使用如下命令(将需要的内容拷贝到寄存器a)
+
+	global/TODO/yank A
+	或
+	g/TODO/y A
+
+### 实例2
+
 在调试内核驱动经常会需要查看调用栈情况,但是日志里打印的是倒序的如下
 
 ```shell
