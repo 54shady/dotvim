@@ -166,14 +166,6 @@ let w = expand("<cword>")
 execute ":!grep --color=auto " w " /path/* -nR "
 endfunction
 
-"tag to grep word
-map tt :call Tag_to()
-function! Grep_word()
-let w = expand("<cword>")
-execute ":sp"
-execute ":tag " w " "
-endfunction
-
 " toggle list and unlist
 nmap <silent><leader>lt :set list!<cr>
 
