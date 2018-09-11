@@ -384,3 +384,26 @@ if filereadable("/usr/lib/python2.7/tags")
 	autocmd FileType python set tags+=/usr/lib/python2.7/tags
 endif
 " }}}
+
+" Default Sessions {{{
+" Auto save and load default session
+let g:DefaultSessionFile="project.vim"
+let g:DefaultInfoFile="project.info"
+let g:OrigPWD=getcwd()
+if filereadable(g:DefaultSessionFile)
+    if argc() == 0
+        au VimEnter * call EnterHandler()
+        au VimLeave * call LeaveHandler()
+    endif
+endif
+function! LeaveHandler()
+	" make default session project.vim
+    exec "mksession! ".g:OrigPWD."/".g:DefaultSessionFile
+    exec "wviminfo! ".g:OrigPWD."/".g:DefaultInfoFile
+endfunction
+function! EnterHandler()
+	" source sesssion
+    exec "source ".g:OrigPWD."/".g:DefaultSessionFile
+    exec "rviminfo ".g:OrigPWD."/".g:DefaultInfoFile
+endfunction
+" }}}
