@@ -473,3 +473,43 @@ rk3288_lcdc_probe ===> rk_fb_register
 rk_fb_register ===> rk_fb_pan_display
 rk_fb_pan_display ===> rk3288_lcdc_config_done
 ```
+### 实例3 (处理git的提交记录信息)
+
+通过git获取多个commit修改记录
+
+	git whatchanged --oneline > commit_record.txt
+
+得到类似如下内容
+
+	b875a51 Default session autoload and save
+	:100644 100644 9b60244... 861a3d5... M	vimrc
+	8705d43 Remove redundant map tt
+	:100644 100644 85df719... 9b60244... M	vimrc
+	e9ac3e5 Append the context to the register
+	:100644 100644 a3b1bcb... 7dc9325... M	README.md
+	:100644 100644 e12b884... 85df719... M	vimrc
+	4b03d16 Find the keyword using [I
+	:100644 100644 6c905fa... a3b1bcb... M	README.md
+	:100644 100644 b396ded... e12b884... M	vimrc
+	0a8b897 Add python flakes plugin support
+	:000000 100644 0000000... 1b4f4f2... A	ftplugin/python/pyflakes.vim
+
+下面的操作都是vim command
+
+删除commit信息,按行匹配,排除中括号里的内容(排除以冒号开始的行)
+
+	g/^[^:].*$/d
+
+排序整个文件
+
+	sort
+
+在排序后查找相同内容的两行，只保留一条记录
+
+	g/^\(.*\)$\n\1/d
+
+同时查找两个关键字(key_one, key_two)并删除相应的行
+
+	g/\(key_one\|key_two\)/d
+
+可以将以上执行的所有命令写在脚本或写成function到脚本中执行
