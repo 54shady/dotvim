@@ -513,3 +513,53 @@ rk_fb_pan_display ===> rk3288_lcdc_config_done
 	g/\(key_one\|key_two\)/d
 
 可以将以上执行的所有命令写在脚本或写成function到脚本中执行
+
+### 实例4 (文本排序)
+
+假设有如下文本内容,需要按长度排序,且空一行
+
+	aaa
+	bbbbbbbb
+	cccccc
+	dd
+	eeeeeeeeeeeeeeee
+
+思路是在每行前面插入column数然后排序
+
+可以通过vim内建的函数col(".")来获取光标位置的column数
+
+通过录制如下宏a来操作
+
+	qa
+	$
+	:len @b=col(".")
+	I<Ctrl-r>b
+	j
+	q
+
+对文件执行宏后结果如下
+
+	3aaa
+	8bbbbbbbb
+	6cccccc
+	2dd
+	16eeeeeeeeeeeeeeee
+
+排序整个文件
+
+	:sort n
+
+结果如下
+
+	2dd
+	3aaa
+	6cccccc
+	8bbbbbbbb
+	16eeeeeeeeeeeeeeee
+
+删除前面的数字后每行空一行
+
+	%s/\n/\r\r/
+
+	\n 表示end-of-line
+	\r 表示回车
