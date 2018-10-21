@@ -29,7 +29,10 @@ filetype plugin on
 filetype indent on
 
 " 80 characters limit each line
-setlocal textwidth=80
+set textwidth=80
+
+" linebreak enable
+set linebreak
 
 " Add ignorance of whitespace to diff
 set diffopt+=iwhite
