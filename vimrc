@@ -52,6 +52,17 @@ highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
 " KeyMaps {{{
 
+" maps for quick test {{{
+function! MapsForC()
+	map <F2> :!gcc %<CR>
+	map <F3> :!./a.out<CR>
+endfunction
+
+function! MapsForPython()
+	map <F2> :!python %<CR>
+endfunction
+" }}}
+
 " ManagerWindow {{{
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap <silent> wm :WMToggle<cr>
