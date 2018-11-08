@@ -233,6 +233,11 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 autocmd FileType python set equalprg=autopep8\ -
 " }}}
 
+" load skeleton when create a empty file {{{
+autocmd! BufNewFile *.c 0r ~/.vim/skeleton/skeleton.c
+autocmd! BufNewFile *.py 0r ~/.vim/skeleton/skeleton.py
+" }}}
+
 endif
 
 " }}}
