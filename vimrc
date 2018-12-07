@@ -68,6 +68,11 @@ let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap <silent> wm :WMToggle<cr>
 " }}}
 
+" split window {{{
+nmap <leader>sp :sp<cr>
+nmap <leader>vsp :vsp<cr>
+" }}}
+
 "a.vim plugin key map {{{
 nmap <leader>a :A<cr>
 nmap <leader>as :AS<cr>
