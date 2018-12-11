@@ -52,6 +52,9 @@ highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
 " KeyMaps {{{
 
+" quick man under cursor
+nmap <leader>k <Plug>(Man)
+
 " maps for quick test {{{
 function! MapsForC()
 	map <F2> :!gcc %<CR>
@@ -211,7 +214,7 @@ map <silent> <leader>ee :e ~/.vimrc<cr>
 nmap <silent> <leader>p :set invpaste<CR>:set paste?<CR>
 
 "marks
-nmap <leader>ks :marks<cr>
+nmap <leader>ms :marks<cr>
 
 "vim提供的用于将.txt的文档生成含有tag的文档以便查找
 ".txt里被星号包裹的就是tag
