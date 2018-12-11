@@ -4,6 +4,23 @@
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
+## Man in Vim and Shell
+
+### In Shell
+
+make links
+
+	ln -s ~/.vim/viman /usr/bin/viman
+	alias man='viman'
+
+using man in shell as usual
+
+	man keyword
+
+### In Vim
+
+	:Man keyword
+
 ## 查找关键字
 
 在要查找的关键字上按左方括号I列出所有关键字的地方
