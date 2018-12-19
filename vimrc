@@ -52,6 +52,16 @@ highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
 " KeyMaps {{{
 
+" maps for external grep {{{
+" using Ack or ag as external grep
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
+" ! means not to jump to first match
+cnoreabbrev Ack Ack!
+nnoremap <Leader>g :Ack!<Space>
+" }}}
+
 " quick man under cursor
 nmap <leader>k <Plug>(Man)
 
@@ -165,6 +175,7 @@ noremap <leader>R @:
 "noremap <F5> :vimgrep /<C-R>=expand("<cword>")<CR>/j **/*.c **/*.h<CR> \| :copen<CR>
 "search keyword in the open buffers(must be in arglist)
 " ## stand for arglist files
+" using cmd :bufdo argadd % add all buffers to arglist
 noremap <leader>fb :vimgrep /<C-R>=expand("<cword>")<CR>/ ##<CR>
 
 "find the word under the cursor in the current file.
