@@ -140,7 +140,7 @@ nmap <silent> <leader>cp :cp<cr>
 " }}}
 
 "buffers {{{
-nmap <silent> <leader>ls :ls<CR>
+nmap <leader>ls :ls<CR>:e #
 nmap <silent> <leader>bd :bd<CR>
 nmap <silent> <leader>bn :bn<CR>
 nmap <silent> <leader>bp :bp<CR>
@@ -200,7 +200,7 @@ execute ":!grep --color=auto " w " /path/* -nR "
 endfunction
 
 " toggle list and unlist
-nmap <silent><leader>lt :set list!<cr>
+nmap <silent><leader>lt :set list! list?<cr>
 
 ",+space去掉末尾空格
 nmap <leader><space> :FixWhitespace<cr>
