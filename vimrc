@@ -445,3 +445,11 @@ function! EnterHandler()
     exec "rviminfo ".g:OrigPWD."/".g:DefaultInfoFile
 endfunction
 " }}}
+
+" Abbreviation {{{
+" insert mode abbreviation for debug log {{{
+" enter insert mode and type the trigger word
+iabbrev logf printf("%s, %d\n", __FUNCTION__, __LINE__);
+iabbrev logk printk("%s, %d\n", __FUNCTION__, __LINE__);
+" }}}
+" }}}
