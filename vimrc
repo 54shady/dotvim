@@ -66,14 +66,12 @@ nnoremap <Leader>g :Ack!<Space>
 nmap <leader>k <Plug>(Man)
 
 " maps for quick test {{{
-function! MapsForC()
-	map <F2> :!gcc %<CR>
-	map <F3> :!./a.out<CR>
-endfunction
+" map for c program
+autocmd FileType c map <F2> :!gcc %<CR>
+autocmd FileType c map <F3> :!./a.out<CR>
 
-function! MapsForPython()
-	map <F2> :!python %<CR>
-endfunction
+" map for python script
+autocmd FileType python map <F3> :!python %<CR>
 " }}}
 
 " ManagerWindow {{{
