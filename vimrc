@@ -44,13 +44,60 @@ endif
 " }}}
 
 "StatusLine {{{
+"set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
 set laststatus=2
-set stl=%F%m%r%h%y[%{&fileformat},%{&fileencoding}]\ [0x%B]\ %=\ [LINE]%l/%L\ %=\[%P]
+set statusline=
+set statusline+=%F " Full path to the file in the buffer.
+set statusline+=%m " Modified flag
+set statusline+=%r " Readonly flag
+"set statusline+=%h " Help buffer flag
+set statusline+=%y " Type of file in the buffer
+set statusline+=[%{&fileformat},%{&fileencoding}]
+"set statusline+=\ %02n " buffer number
+set statusline+=\ 
+"set statusline+=%*
+"set statusline+=%#Comment#
+set statusline+=[0x%B]
+"set statusline+=%#Statement#
+"set statusline+=%#Directory#
+set statusline+=%=   " left / right items separator
+set statusline+=[LINE]%l/%L
+set statusline+=\ 
+set statusline+=%=  " left / right items separator
+"set statusline+=%#Special#
+set statusline+=[%P]
+
 highlight StatusLine guifg=White guibg=Black
 highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 " }}}
 
 " KeyMaps {{{
+
+" yank/paste to/from the OS clipboard {{{
+"noremap <silent> <leader>y "+y
+"noremap <silent> <leader>Y "+Y
+"noremap <silent> <leader>p "+p
+"noremap <silent> <leader>P "+P
+" }}}
+
+" reselect last selection {{{
+" after indent / un-indent in visual and select modes
+vnoremap < <gv
+vnoremap > >gv
+vmap <Tab> >
+vmap <S-Tab> <
+" }}}
+
+" Using minuskey '-' and underscore '_' to move line up/down {{{
+" move current line down
+noremap <silent>_ :m+<CR>
+" move current line up
+noremap <silent>- :m-2<CR>
+" move visual selection down
+vnoremap <silent>_ :m '>+1<CR>gv=gv
+" move visual selection up
+vnoremap <silent>- :m '<-2<CR>gv=gv
+" }}}
 
 " maps for external grep {{{
 " using Ack or ag as external grep
@@ -61,9 +108,6 @@ endif
 cnoreabbrev Ack Ack!
 nnoremap <Leader>g :Ack!<Space>
 " }}}
-
-" quick man under cursor
-nmap <leader>k <Plug>(Man)
 
 " maps for quick test {{{
 " map for c program
@@ -159,6 +203,14 @@ inoremap <right> <nop>
 
 " Misc key maps {{{
 
+" quick man under cursor
+nmap <leader>k <Plug>(Man)
+
+" cd to the directory of the current buffer
+nnoremap <silent> <leader>cd :cd %:p:h<CR>
+
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
 " [r]un command mode
 noremap <leader>r :
 
