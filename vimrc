@@ -451,3 +451,12 @@ iabbrev logf printf("%s, %d\n", __FUNCTION__, __LINE__);
 iabbrev logk printk("%s, %d\n", __FUNCTION__, __LINE__);
 " }}}
 " }}}
+
+" Jedi {{{
+" overlay jedi default_settings
+" no more map for default
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#rename_command = ""
+let g:jedi#call_signatures_command = ""
+let g:jedi#goto_assignments_command = ""
+" }}}
