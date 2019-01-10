@@ -520,3 +520,15 @@ let g:w3m#homepage = "http://www.baidu.com/"
 let g:w3m#hit_a_hint_key = 'f'
 let g:w3m#search_engine = "https://www.baidu.com/s?wd="
 " }}}
+
+" Quick translate map {{{
+" ain't that elegant
+"nnoremap tr :let current_word=expand("<cword>")<Bar>exec '!python youdaofanyi.py ' .a<CR>
+
+" YouDao Translate Plugin KeyMap {{{
+" ctrl-t translate the current word under cursor
+vnoremap <silent> <C-t> :<C-u>Ydv<CR>
+nnoremap <silent> <C-t> :<C-u>Ydc<CR>
+noremap <leader>yd :<C-u>Yde<CR>
+" }}}
+" }}}
