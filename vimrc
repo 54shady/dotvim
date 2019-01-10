@@ -512,3 +512,11 @@ let g:jedi#rename_command = ""
 let g:jedi#call_signatures_command = ""
 let g:jedi#goto_assignments_command = ""
 " }}}
+
+" w3m plugin config {{{
+let g:w3m#command = '/usr/bin/w3m'
+let g:w3m#external_browser = 'firefox-bin'
+let g:w3m#homepage = "http://www.baidu.com/"
+let g:w3m#hit_a_hint_key = 'f'
+let g:w3m#search_engine = "https://www.baidu.com/s?wd="
+" }}}
