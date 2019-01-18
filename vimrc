@@ -513,7 +513,7 @@ let g:jedi#call_signatures_command = ""
 let g:jedi#goto_assignments_command = ""
 " }}}
 
-" w3m plugin config {{{
+" W3m plugin config {{{
 let g:w3m#command = '/usr/bin/w3m'
 let g:w3m#external_browser = 'firefox-bin'
 let g:w3m#homepage = "http://www.baidu.com/"
@@ -531,4 +531,44 @@ vnoremap <silent> <C-t> :<C-u>Ydv<CR>
 nnoremap <silent> <C-t> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
 " }}}
+" }}}
+
+" Autoformat code {{{
+" package dev-util/astyle require
+map <F4> :call FormatCode()<CR>
+func! FormatCode()
+    exec "w"
+    if &filetype == 'c' || &filetype == 'h'
+		" format code style
+		exec '!astyle --style=linux --pad-oper --max-code-length=80 %'
+		" make multiple empty lines into only one
+		exec '%s/^\n$//ge'
+		" translate annotation from cpp into c format
+		exec '%s/\/\/\(.*\)/\/\* \1 \*\//ge'
+		" for, if, while format
+		exec '%s/for(/for (/ge'
+		exec '%s/if(/if (/ge'
+		exec '%s/while(/while (/ge'
+		"exec ':FixWhitespace<CR>'
+		" goto the top line
+		exec 'normal gg'
+		" sync change to disck
+		exec 'w'
+    elseif &filetype == 'cpp' || &filetype == 'cc' || &filetype == 'hpp'
+		exec '!astyle --style=linux --pad-oper --max-code-length=80 %'
+    elseif &filetype == 'perl'
+        exec "!astyle --style=gnu --suffix=none %"
+    elseif &filetype == 'py'|| &filetype == 'python'
+        exec "!autopep8 --in-place --aggressive %"
+    elseif &filetype == 'java'
+        exec "!astyle --style=java --suffix=none %"
+    elseif &filetype == 'jsp'
+        exec "!astyle --style=gnu --suffix=none %"
+    elseif &filetype == 'xml'
+        exec "!astyle --style=gnu --suffix=none %"
+    else
+        exec "normal gg=G"
+        return
+    endif
+endfunc
 " }}}
