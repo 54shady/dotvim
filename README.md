@@ -349,6 +349,99 @@ Like `cx`, but for Visual mode.
 </record>
 ```
 
+## 批量替换
+
+[参考文章:vim序列的生成方法详解](https://www.jb51.net/article/123351.htm)
+
+### 插入一个序列(假设20个 4~23)
+
+在文本中先插入20行站位符(stub)
+
+	stub
+	stub
+	...
+	stub
+
+执行下面命令,将所有stub替换成变量i的值
+
+	:let i = 4 | g/stub/s//\=i/ | let i += 1
+
+执行结果如下
+
+	4
+	5
+	...
+	22
+	23
+
+### 根据行号生成序列
+
+假设有如下文本内容
+
+	name1
+	name1
+	name1
+	name1
+
+现在想要将数字1改为行号×2
+
+	:%s/1/\=line('.') * 2/g
+
+其中line('.')能够获当前行号
+
+	:help line()
+
+### 根据变量生成序列
+
+假设有如下文本
+
+	void func_name {
+	};
+	void func_name {
+	};
+	void func_name {
+	};
+	void func_name {
+	};
+	void func_name {
+	};
+
+使用如下命令操作
+
+	:let i = 1 | g/func_name/s//\='foo_'.i/ | let i += 1
+
+执行结果如下
+
+	void foo_1 {
+	};
+	void foo_2 {
+	};
+	void foo_3 {
+	};
+	void foo_4 {
+	};
+	void foo_5 {
+	};
+
+当一行中有多个func_name是上面的命令无法达到递增的效果
+
+可以使用寄存器操作(这里使用寄存器a)
+
+	:let @a=1 | %s/func_name/\='bar_'.(@a+setreg('a',@a+1))/g
+
+执行结果如下
+
+	void bar_1 {
+	};
+	void bar_2 {
+	};
+	void bar_3 {
+	};
+	void bar_4 {
+	};
+	void bar_5 {
+	};
+
 ## 操作寄存器(在宏操作中经常用到)
 
 将寄存器a的内容粘帖到当前行
