@@ -5,21 +5,48 @@ set incsearch
 set hlsearch
 set nocompatible
 set nowrapscan
-set fenc=utf-8
-set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 "set autochdir
 let mapleader = ","
-
-" triangle symbol : enter insert mode and type ctrl-v u25b8
-set listchars=tab:▸\ ,trail:-,eol:¬
 
 " set no backup files
 set nobackup
 set nowritebackup
 set noswapfile
 
+" different between windows and linux
+" windows setting
+if has("win32")
+if has("gui_running")
+
+" no more menu,bar,etc
+set guioptions-=T
+set guioptions-=m
+set guioptions-=r
+set guioptions-=L
+
+" font size
+set guifont=Courier_New:h16
+
+" color
+colorscheme desert
+
+" max the window
+au GUIEnter * simalt ~x
+endif " end gui setting
+else
+" linxu setting
+" triangle symbol : enter insert mode and type ctrl-v u25b8
+set listchars=tab:▸\ ,trail:-,eol:¬
+
+" fenc on linux os
+set fenc=utf-8
+set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
+
 "use the color in the runtime color path
 colorscheme peachpuff
+
+endif " end os different setting
+
 
 "set mouse=a
 syntax on
