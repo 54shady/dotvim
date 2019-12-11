@@ -410,6 +410,8 @@ if has("cscope")
 	set csto=1
 	set cst
 	set nocsverb
+	" generate the database
+	" cscope -bqR
 	" add any database in current directory
 	if filereadable("cscope.out")
 		cs add cscope.out
@@ -417,26 +419,46 @@ if has("cscope")
 	set csverb
 endif
 
-"<leader>cc + <s|g|c|t|e|f|i|d>
+"<leader>cc + <a|s|g|c|t|e|f|i|d>
+
+" a: Find assignments to this symbol
+nmap <leader>cca :cs find a <C-R>=expand("<cword>")<CR><CR>
+
+" s: Find this C symbol
 nmap <leader>ccs :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+" g: Find this definition
 nmap <leader>ccg :cs find g <C-R>=expand("<cword>")<CR><CR>
+
+" c: Find functions calling this function
 nmap <leader>ccc :cs find c <C-R>=expand("<cword>")<CR><CR>
+
+" t: Find this text string
 nmap <leader>cct :cs find t <C-R>=expand("<cword>")<CR><CR>
+
+" e: Find this egrep pattern
 nmap <leader>cce :cs find e <C-R>=expand("<cword>")<CR><CR>
+
+" f: Find this file
 nmap <leader>ccf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+
+" i: Find files #including this file
 nmap <leader>cci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+
+" d: Find functions called by this function
 nmap <leader>ccd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "cscope C-_ is ctrl+_
-:set cscopequickfix=s-,c-,d-,i-,t-,e-
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+":set cscopequickfix=s-,c-,d-,i-,t-,e-
+"
+"nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " }}}
 
 " Markdown forder {{{
