@@ -318,6 +318,9 @@ nmap <leader>ht :helptags $VIMRUNTIME/doc<cr>
 " Only do this part when compiled vim with autocommands supported
 if has("autocmd")
 
+" generate png file while write current dot file to buffer
+autocmd! BufWritePost *.dot !dot -Tpng % -o /tmp/dottmp.png
+
 " VIMRC {{{
 " when .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
