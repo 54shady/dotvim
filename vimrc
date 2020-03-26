@@ -624,3 +624,11 @@ func! FormatCode()
     endif
 endfunc
 " }}}
+
+" Vim debug miscellaneous {{{
+"set verbose=4
+" or set as below in file
+" :[count]verbose {command}
+" for example, open file a.c, enter command below
+" :4verbose set formatoptions
+" }}}
