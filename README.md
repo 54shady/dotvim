@@ -614,11 +614,11 @@ rk_fb_pan_display ===> rk3288_lcdc_config_done
 
 	sort
 
-在排序后查找相同内容的两行，只保留一条记录
+在排序后查找相同内容的两行，只保留一条记录(keep only one line of repeat lines)
 
 	g/^\(.*\)$\n\1/d
 
-同时查找两个关键字(key_one, key_two)并删除相应的行
+同时查找两个关键字(key_one, key_two)并删除相应的行(multiple keywords)
 
 	g/\(key_one\|key_two\)/d
 
@@ -673,3 +673,28 @@ rk_fb_pan_display ===> rk3288_lcdc_config_done
 
 	\n 表示end-of-line
 	\r 表示回车
+
+### 实例5 处理qemu的qtree信息
+
+同时匹配多个关键字(bus:, dev:)
+并将不包含该关键字的行删除
+
+	:g!/bus:\|dev:/d
+
+去除重复行并保留一行记录即可
+
+	:g/^\(.*\)$\n\1/d
+
+得到的内容大致如下
+
+	bus: main-system-bus
+	  dev: kvm-ioapic, id ""
+	  dev: q35-pcihost, id ""
+		bus: pcie.0
+		  dev: qxl-vga, id "video0"
+		  dev: ich9-usb-uhci3, id ""
+		  dev: ich9-usb-uhci2, id ""
+		  dev: ich9-usb-uhci1, id ""
+		  dev: ich9-usb-ehci1, id "usb"
+			bus: usb.0
+		  dev: pcie-root-port, id "pci.3"
