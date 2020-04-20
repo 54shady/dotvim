@@ -100,6 +100,10 @@ highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 
 " KeyMaps {{{
 
+" [un]comment for xml file
+vnoremap cx :s/^\(.*\)$/<!--\1--><CR>
+vnoremap ucx :s/<!--\(.*\)-->/\1/<CR>
+
 " yank/paste to/from the OS clipboard {{{
 "noremap <silent> <leader>y "+y
 "noremap <silent> <leader>Y "+Y
@@ -129,7 +133,7 @@ vnoremap <silent>- :m '<-2<CR>gv=gv
 " maps for external grep {{{
 " using Ack or ag as external grep
 if executable('ag')
-	let g:ackprg = 'ag --vimgrep --ignore tags'
+	let g:ackprg = 'ag --vimgrep --ignore tags --ignore filenametags'
 endif
 " ! means not to jump to first match
 cnoreabbrev Ack Ack!
@@ -512,7 +516,7 @@ let g:DirDiffWindowSize = 5
 " In this case for all files match the pattern ~/proj2/*
 " the tag files ~/proj2/tags and ~/work/common.tags will be used
 " let g:ProjTags += [[ "~/proj2", "~/proj2/tags", "~/work/common.tags" ]]
-" let g:ProjTags += [[ "path1",
+" let g:ProjTags = [[ "path1",
 " \ "path2",
 " \ "path3",
 " \ "path4" ]]
