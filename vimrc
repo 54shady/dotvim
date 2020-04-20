@@ -101,6 +101,7 @@ highlight StatusLineNC guifg=Black guibg=White ctermfg=red
 " KeyMaps {{{
 
 " [un]comment for xml file
+" press "vat" to select a tag in xml file first
 vnoremap cx :s/^\(.*\)$/<!--\1--><CR>
 vnoremap ucx :s/<!--\(.*\)-->/\1/<CR>
 
