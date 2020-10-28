@@ -387,8 +387,8 @@ endif
 " }}}
 
 "Undo plugin {{{
-set undodir=~/.vim/tmp/.undodir
-set undofile
+"set undodir=~/.vim/tmp/.undodir
+"set undofile
 set history=100
 set undolevels=100
 " }}}
